@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object id="mainwindow" class="ttk.Frame">
+    <property name="height">200</property>
+    <property name="relief">raised</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object id="prog1" class="ttk.Button">
+        <property name="command">prog1_click</property>
+        <property name="compound">left</property>
+        <property name="cursor">arrow</property>
+        <property name="takefocus">true</property>
+        <property name="text" translatable="yes">Program 1</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="prog2" class="ttk.Button">
+        <property name="command">prog2_click</property>
+        <property name="text" translatable="yes">Program 2</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="prog3" class="ttk.Button">
+        <property name="command">prog3_click</property>
+        <property name="text" translatable="yes">Program 3</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="prog4" class="ttk.Button">
+        <property name="command">prog4_click</property>
+        <property name="text" translatable="yes">Program 4</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="prog5" class="ttk.Button">
+        <property name="command">prog5_click</property>
+        <property name="text" translatable="yes">Program 5</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="prog6" class="ttk.Button">
+        <property name="command">prog6_click</property>
+        <property name="text" translatable="yes">Program 6</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="ipadx">50</property>
+          <property name="ipady">50</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="quit_button" class="ttk.Button">
+        <property name="command">quit_click</property>
+        <property name="cursor">bottom_left_corner</property>
+        <property name="takefocus">true</property>
+        <property name="text" translatable="yes">Quit</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">False</property>
+          <property name="row">3</property>
+          <property name="sticky">se</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+  <object id="prog1_window" class="ttk.Frame">
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object id="prog1_link" class="ttk.Label">
+        <property name="font">{sans} 20 {bold}</property>
+        <property name="padding">40</property>
+        <property name="text" translatable="yes">Visit example.com for app</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="home1" class="ttk.Button">
+        <property name="command">returnhome</property>
+        <property name="text" translatable="yes">Return Home</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">40</property>
+          <property name="ipady">40</property>
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">s</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+  <object id="prog2_window" class="ttk.Frame">
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object id="prog1_link_3" class="ttk.Label">
+        <property name="font">{sans} 20 {bold}</property>
+        <property name="padding">40</property>
+        <property name="text" translatable="yes">Visit example.com for app</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="home1_10" class="ttk.Button">
+        <property name="command">returnhome</property>
+        <property name="text" translatable="yes">Return Home</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">40</property>
+          <property name="ipady">40</property>
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">s</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+  <object id="prog3_window" class="ttk.Frame">
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object id="prog1_link_4" class="ttk.Label">
+        <property name="font">{sans} 20 {bold}</property>
+        <property name="padding">40</property>
+        <property name="text" translatable="yes">Visit example.com for app</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object id="home1_11" class="ttk.Button">
+        <property name="command">returnhome</property>
+        <property name="text" translatable="yes">Return Home</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="ipadx">40</property>
+          <property name="ipady">40</property>
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">s</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
