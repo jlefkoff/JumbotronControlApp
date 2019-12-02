@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 
 
 LARGE_FONT= ("Verdana", 25)
-SMALL_FONT= ("Verdana", 35)
+SMALL_FONT= ("Verdana", 30)
 
 
 class MainApp(tk.Tk):
@@ -83,7 +83,7 @@ class Prog1(tk.Frame):
         render = ImageTk.PhotoImage(load)
         img = tk.Label(self, image=render)
         img.image = render
-        img.grid(row=1,column=0)
+        img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
