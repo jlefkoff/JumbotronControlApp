@@ -66,7 +66,7 @@ class StartPage(tk.Frame):
 
         button4 = tk.Button(self, text="Run Program 4",
                             command=lambda: controller.show_frame(Prog4), font=SMALL_FONT)
-        button4.grid(row=4,column=0, ipadx=140)
+        button4.grid(row=4,column=0, ipadx=140, sticky="s")
 
 
 
