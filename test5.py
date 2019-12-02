@@ -1,4 +1,5 @@
 import tkinter as tk
+import paho.mqtt.client as mqtt
 
 
 LARGE_FONT= ("Verdana", 40)
@@ -20,6 +21,9 @@ class MainApp(tk.Tk):
 
         self.frames = {}
 
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
+
         for F in (StartPage, Prog1, Prog2):
 
             frame = F(container, self)
@@ -39,6 +43,10 @@ class MainApp(tk.Tk):
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
+        mqttc.publish('test/sub', payload='startup')
+
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Start Page", font=LARGE_FONT, padx=150, pady=100)
         label.grid(row=0,column=0, columnspan=2)
@@ -56,6 +64,8 @@ class StartPage(tk.Frame):
 class Prog1(tk.Frame):
 
     def __init__(self, parent, controller):
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT)
         label.grid(row=0,column=0, columnspan=2)
@@ -65,13 +75,15 @@ class Prog1(tk.Frame):
         button1.grid(row=1,column=0)
 
         button2 = tk.Button(self, text="Say yo!",
-                            command=lambda: print("yo"), font=SMALL_FONT)
+                            command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
         button2.grid(row=1,column=1)
 
 
 class Prog2(tk.Frame):
 
     def __init__(self, parent, controller):
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT)
         label.grid(row=0,column=0, columnspan=2)
@@ -80,8 +92,8 @@ class Prog2(tk.Frame):
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
         button1.grid(row=1,column=0)
 
-        button2 = tk.Button(self, text="Print Hey",
-                            command=lambda: print("hey"), font=SMALL_FONT)
+        button2 = tk.Button(self, text="send mqtt command",
+                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
         button2.grid(row=1,column=1)
         
 
