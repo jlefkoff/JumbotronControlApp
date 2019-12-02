@@ -54,19 +54,19 @@ class StartPage(tk.Frame):
 
         button = tk.Button(self, text="Run Program 1",
                             command=lambda:[controller.show_frame(Prog1), print("running program 1"), mqttc.publish('test/sub', payload='run program 1')], font=SMALL_FONT)
-        button.grid(row=1,column=0, ipadx=100)
+        button.grid(row=1,column=0, ipadx=140)
 
         button2 = tk.Button(self, text="Run Program 2",
                             command=lambda: controller.show_frame(Prog2), font=SMALL_FONT)
-        button2.grid(row=2,column=0)
+        button2.grid(row=2,column=0, ipadx=140)
 
         button3 = tk.Button(self, text="Run Program 3",
                             command=lambda: controller.show_frame(Prog3), font=SMALL_FONT)
-        button3.grid(row=3,column=0)
+        button3.grid(row=3,column=0, ipadx=140)
 
         button4 = tk.Button(self, text="Run Program 4",
                             command=lambda: controller.show_frame(Prog4), font=SMALL_FONT)
-        button4.grid(row=4,column=0)
+        button4.grid(row=4,column=0, ipadx=140)
 
 
 
