@@ -12,7 +12,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     if(str(msg.payload) == "p1"):
-        os.system("python3 hworld.py")
+        os.system("sudo python3 hworld.py")
 
 client = mqtt.Client()
 client.on_connect = on_connect
