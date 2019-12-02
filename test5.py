@@ -12,6 +12,8 @@ class MainApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         
         tk.Tk.__init__(self, *args, **kwargs)
+        tk.Tk.attributes('-fullscreen', True)
+        tk.Tk.bind('<Escape>',lambda e: tk.Tk.destroy())
         container = tk.Frame(self)
 
         #container.pack(side="top", fill="both", expand = True)
@@ -89,8 +91,8 @@ class Prog1(tk.Frame):
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
         button1.grid(row=2,column=0)
 
-        button2 = tk.Button(self, text="Say yo!",
-                            command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
+        button2 = tk.Button(self, text="send mqtt command",
+                            command=lambda: mqttc.publish('test/sub', payload='p1'), font=SMALL_FONT)
         button2.grid(row=2,column=1)
 
 
@@ -108,7 +110,7 @@ class Prog2(tk.Frame):
         button1.grid(row=1,column=0)
 
         button2 = tk.Button(self, text="send mqtt command",
-                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
+                            command=lambda: mqttc.publish('test/sub', payload='p2'), font=SMALL_FONT)
         button2.grid(row=1,column=1)
         
 class Prog3(tk.Frame):
@@ -125,7 +127,7 @@ class Prog3(tk.Frame):
         button1.grid(row=1,column=0)
 
         button2 = tk.Button(self, text="send mqtt command",
-                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
+                            command=lambda: mqttc.publish('test/sub', payload='p3'), font=SMALL_FONT)
         button2.grid(row=1,column=1)
         
 class Prog4(tk.Frame):
@@ -142,7 +144,7 @@ class Prog4(tk.Frame):
         button1.grid(row=1,column=0)
 
         button2 = tk.Button(self, text="send mqtt command",
-                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
+                            command=lambda: mqttc.publish('test/sub', payload='p4'), font=SMALL_FONT)
         button2.grid(row=1,column=1)
         
 
