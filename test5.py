@@ -2,6 +2,8 @@ import tkinter as tk
 import paho.mqtt.client as mqtt
 from PIL import Image, ImageTk
 
+mqttc = mqtt.Client()
+mqttc.connect('jlmbp.local')
 
 LARGE_FONT= ("Verdana", 25)
 SMALL_FONT= ("Verdana", 30)
@@ -44,8 +46,8 @@ class MainApp(tk.Tk):
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        mqttc = mqtt.Client()
-        mqttc.connect('jlmbp.local')
+        # mqttc = mqtt.Client()
+        global mqttc
         mqttc.publish('test/sub', payload='startup')
 
         tk.Frame.__init__(self,parent)
