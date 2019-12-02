@@ -25,7 +25,7 @@ class MainApp(tk.Tk):
         mqttc = mqtt.Client()
         mqttc.connect('jlmbp.local')
 
-        for F in (StartPage, Prog1, Prog2):
+        for F in (StartPage, Prog1, Prog2, Prog3, Prog4):
 
             frame = F(container, self)
 
@@ -60,6 +60,14 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame(Prog2), font=SMALL_FONT)
         button2.grid(row=1,column=1)
 
+        button3 = tk.Button(self, text="Run Program 3",
+                            command=lambda: controller.show_frame(Prog3), font=SMALL_FONT)
+        button3.grid(row=2,column=0)
+
+        button4 = tk.Button(self, text="Run Program 4",
+                            command=lambda: controller.show_frame(Prog4), font=SMALL_FONT)
+        button4.grid(row=2,column=1)
+
 
 
 class Prog1(tk.Frame):
@@ -89,6 +97,40 @@ class Prog1(tk.Frame):
 
 
 class Prog2(tk.Frame):
+
+    def __init__(self, parent, controller):
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT, height=3)
+        label.grid(row=0,column=0, columnspan=2)
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
+        button1.grid(row=1,column=0)
+
+        button2 = tk.Button(self, text="send mqtt command",
+                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
+        button2.grid(row=1,column=1)
+        
+class Prog3(tk.Frame):
+
+    def __init__(self, parent, controller):
+        mqttc = mqtt.Client()
+        mqttc.connect('jlmbp.local')
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT, height=3)
+        label.grid(row=0,column=0, columnspan=2)
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
+        button1.grid(row=1,column=0)
+
+        button2 = tk.Button(self, text="send mqtt command",
+                            command=lambda: mqttc.publish('test/sub', payload='command on page 2 pressed'), font=SMALL_FONT)
+        button2.grid(row=1,column=1)
+        
+class Prog4(tk.Frame):
 
     def __init__(self, parent, controller):
         mqttc = mqtt.Client()
