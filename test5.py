@@ -3,8 +3,8 @@ import paho.mqtt.client as mqtt
 from PIL import Image, ImageTk
 
 
-LARGE_FONT= ("Verdana", 35)
-SMALL_FONT= ("Verdana", 30)
+LARGE_FONT= ("Verdana", 30)
+SMALL_FONT= ("Verdana", 35)
 
 
 class MainApp(tk.Tk):
@@ -49,7 +49,7 @@ class StartPage(tk.Frame):
         mqttc.publish('test/sub', payload='startup')
 
         tk.Frame.__init__(self,parent)
-        label = tk.Label(self, text="Hello! What program would you like to run?", font=LARGE_FONT, height=3)
+        label = tk.Label(self, text="Hello! What program would you like to run?", font=LARGE_FONT)
         label.grid(row=0,column=0, columnspan=2)
 
         button = tk.Button(self, text="Run Program 1",
@@ -84,8 +84,6 @@ class Prog1(tk.Frame):
         img = tk.Label(self, image=render)
         img.image = render
         img.grid(row=2,column=0)
-
-
 
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
