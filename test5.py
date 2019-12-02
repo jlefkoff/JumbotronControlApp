@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 from PIL import Image, ImageTk
 
 
-LARGE_FONT= ("Verdana", 40)
+LARGE_FONT= ("Verdana", 35)
 SMALL_FONT= ("Verdana", 30)
 
 
