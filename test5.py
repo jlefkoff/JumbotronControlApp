@@ -1,5 +1,6 @@
 import tkinter as tk
 import paho.mqtt.client as mqtt
+from PIL import Image, ImageTk
 
 
 LARGE_FONT= ("Verdana", 40)
@@ -48,11 +49,11 @@ class StartPage(tk.Frame):
         mqttc.publish('test/sub', payload='startup')
 
         tk.Frame.__init__(self,parent)
-        label = tk.Label(self, text="Start Page", font=LARGE_FONT, padx=150, pady=100)
+        label = tk.Label(self, text="Hello! What program would you like to run?", font=LARGE_FONT, height=3)
         label.grid(row=0,column=0, columnspan=2)
 
         button = tk.Button(self, text="Run Program 1",
-                            command=lambda: controller.show_frame(Prog1), font=SMALL_FONT)
+                            command=lambda:[controller.show_frame(Prog1), print("running program 1"), mqttc.publish('test/sub', payload='run program 1')], font=SMALL_FONT)
         button.grid(row=1,column=0)
 
         button2 = tk.Button(self, text="Run Program 2",
@@ -67,8 +68,16 @@ class Prog1(tk.Frame):
         mqttc = mqtt.Client()
         mqttc.connect('jlmbp.local')
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT)
+        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT, height=3)
         label.grid(row=0,column=0, columnspan=2)
+
+        load = Image.open("smile1.jpeg")
+        render = ImageTk.PhotoImage(load)
+        img = tk.Label(self, image=render)
+        img.image = render
+        img.grid(row=2,column=0)
+
+
 
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
@@ -85,7 +94,7 @@ class Prog2(tk.Frame):
         mqttc = mqtt.Client()
         mqttc.connect('jlmbp.local')
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT)
+        label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT, height=3)
         label.grid(row=0,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Back to Home",
