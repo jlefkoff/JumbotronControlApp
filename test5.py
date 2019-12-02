@@ -79,19 +79,19 @@ class Prog1(tk.Frame):
         label = tk.Label(self, text="To control this program, visit: \n example.com", font=LARGE_FONT, height=3)
         label.grid(row=0,column=0, columnspan=2)
 
-        load = Image.open("smile1.jpeg")
+        load = Image.open("qrcode.png")
         render = ImageTk.PhotoImage(load)
         img = tk.Label(self, image=render)
         img.image = render
-        img.grid(row=2,column=0)
+        img.grid(row=1,column=0)
 
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
-        button1.grid(row=1,column=0)
+        button1.grid(row=2,column=0)
 
         button2 = tk.Button(self, text="Say yo!",
                             command=lambda: controller.show_frame(StartPage), font=SMALL_FONT)
-        button2.grid(row=1,column=1)
+        button2.grid(row=2,column=1)
 
 
 class Prog2(tk.Frame):
