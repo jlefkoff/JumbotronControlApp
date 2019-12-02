@@ -12,8 +12,6 @@ class MainApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         
         tk.Tk.__init__(self, *args, **kwargs)
-        tk.Tk.attributes('-fullscreen', True)
-        tk.Tk.bind('<Escape>',lambda e: tk.Tk.destroy())
         container = tk.Frame(self)
 
         #container.pack(side="top", fill="both", expand = True)
