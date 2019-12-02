@@ -11,7 +11,7 @@ def on_connect(client, userdata, flags, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    if(str(msg.payload) == "b'p1'"):
+    if(str(msg.payload) == "p1"):
         os.system("python3 hworld.py")
 
 client = mqtt.Client()
