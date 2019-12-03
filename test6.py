@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 from PIL import Image, ImageTk
 
 mqttc = mqtt.Client()
-mqttc.connect('jlmbp.local')
+mqttc.connect('mqttbroker')
 
 LARGE_FONT= ("Verdana", 25)
 SMALL_FONT= ("Verdana", 30)

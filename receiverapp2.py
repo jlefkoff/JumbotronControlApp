@@ -13,7 +13,7 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+ str(msg.payload))
+    print(msg.topic+" "+str(msg.payload))
     if(str(msg.payload) == "b'p1'"):
         # process = subprocess.Popen(['python3', 'hworld.py'])
         process1 = subprocess.run(["python3", "hworld.py"])
@@ -33,6 +33,6 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("mqttbroker", 1883, 60)
+client.connect("jlmbp.local", 1883, 60)
 
 client.loop_forever()
