@@ -16,7 +16,6 @@ class MainApp(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
 
-        #container.pack(side="top", fill="both", expand = True)
         container.grid(row=0,column=0)
 
         container.grid_rowconfigure(0, weight=1)
@@ -46,7 +45,6 @@ class MainApp(tk.Tk):
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        # mqttc = mqtt.Client()
         global mqttc
         mqttc.publish('test/sub', payload='startup')
 
@@ -55,7 +53,7 @@ class StartPage(tk.Frame):
         label.grid(row=0,column=0, columnspan=2)
 
         button = tk.Button(self, text="Run Program 1",
-                            command=lambda:[controller.show_frame(Prog1), mqttc.publish('test/sub', payload='p1')], font=SMALL_FONT)
+                            command=lambda:[controller.show_frame(Prog1), mqttc.publish('test/sub', payload="p1")], font=SMALL_FONT)
         button.grid(row=1,column=0, ipadx=140)
 
         button2 = tk.Button(self, text="Run Program 2",

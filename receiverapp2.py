@@ -2,6 +2,7 @@ import os
 import signal
 import subprocess
 import paho.mqtt.client as mqtt
+import time
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -12,20 +13,26 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
-    if(str(msg.payload) == "p1"):
-        pro = subprocess.Popen(['echo','hello'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
-                       shell=True, preexec_fn=os.setsid) 
+    print(msg.topic+" "+ str(msg.payload))
+    if(str(msg.payload) == "b'p1'"):
+        # process = subprocess.Popen(['python3', 'hworld.py'])
+        process1 = subprocess.run(["python3", "hworld.py"])
+        # time.sleep(5)
+        # process.terminate()
+    if(str(msg.payload) == "b'qp1'"):
+        process = subprocess.Popen(['python3', 'hworld.py'])
+        time.sleep(5)
+        process.terminate()
+    if(str(msg.payload) == "b'p2'"):
+        process = subprocess.Popen(['python3', 'hworld.py'])
+    elif(str(msg.payload) == "b'qp2"):
+        process.kill()
+
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("jlmbp.local", 1883, 60)
+client.connect("mqttbroker", 1883, 60)
 
-
-# The os.setsid() is passed in the argument preexec_fn so
-# it's run after the fork() and before  exec() to run the shell.
-stdout, stderr = pro.communicate()
-print(stdout)
-os.killpg(os.getpgid(pro.pid), signal.SIGTERM)  # Send the signal to all the process groups
+client.loop_forever()
