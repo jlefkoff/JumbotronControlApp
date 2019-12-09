@@ -1,9 +1,10 @@
 import tkinter as tk
 import paho.mqtt.client as mqtt
 from PIL import Image, ImageTk
+import time
 
 mqttc = mqtt.Client()
-mqttc.connect('jlmbp.local')
+mqttc.connect('mqttbroker')
 
 LARGE_FONT= ("Verdana", 25)
 SMALL_FONT= ("Verdana", 30)
@@ -26,7 +27,7 @@ class MainApp(tk.Tk):
         mqttc = mqtt.Client()
         mqttc.connect('jlmbp.local')
 
-        for F in (StartPage, Prog1, Prog2, Prog3, Prog4):
+        for F in (StartPage, Prog1, Prog2, Prog3, Prog4, Prog5):
 
             frame = F(container, self)
 
@@ -53,11 +54,11 @@ class StartPage(tk.Frame):
         label.grid(row=0,column=0, columnspan=2)
 
         button = tk.Button(self, text="Run Program 1",
-                            command=lambda:[controller.show_frame(Prog1), mqttc.publish('test/sub', payload="p1")], font=SMALL_FONT)
+                            command=lambda:[controller.show_frame(Prog1), mqttc.publish("shutdown"),mqttc.publish('test/sub', payload="p1")], font=SMALL_FONT)
         button.grid(row=1,column=0, ipadx=140)
 
         button2 = tk.Button(self, text="Run Program 2",
-                            command=lambda:[controller.show_frame(Prog2), mqttc.publish('test/sub', payload='p2')], font=SMALL_FONT)
+                            command=lambda:[controller.show_frame(Prog2), mqttc.publish('test/sub', payload='p2'), mqttc.publish('test/sub', payload='p2b')], font=SMALL_FONT)
         button2.grid(row=2,column=0, ipadx=140)
 
         button3 = tk.Button(self, text="Run Program 3",
@@ -67,6 +68,9 @@ class StartPage(tk.Frame):
         button4 = tk.Button(self, text="Run Program 4",
                             command=lambda:[controller.show_frame(Prog4), mqttc.publish('test/sub', payload='p4')], font=SMALL_FONT)
         button4.grid(row=4,column=0, ipadx=140, sticky="s")
+        button4 = tk.Button(self, text="Run Program 5",
+                            command=lambda:[controller.show_frame(Prog5), mqttc.publish('test/sub', payload='p5'), mqttc.publish('test/sub', payload='p5b')], font=SMALL_FONT)
+        button4.grid(row=5,column=0, ipadx=140, sticky="s")
 
 
 
@@ -143,6 +147,25 @@ class Prog4(tk.Frame):
         button1 = tk.Button(self, text="Quit Program",
                             command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp4')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
+
+class Prog5(tk.Frame):
+    
+    def __init__(self, parent, controller):
+        global mqttc
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="To control this program -5, visit: \n example.com", font=LARGE_FONT, height=3)
+        label.grid(row=0,column=0, columnspan=2)
+
+        load = Image.open("qrcode.png")
+        render = ImageTk.PhotoImage(load)
+        img = tk.Label(self, image=render)
+        img.image = render
+        img.grid(row=1,column=0, columnspan=2)
+
+        button1 = tk.Button(self, text="Quit Program",
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp5')], font=SMALL_FONT)
+        button1.grid(row=2,column=0, columnspan=2)
+
         
 
 

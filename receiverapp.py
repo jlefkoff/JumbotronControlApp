@@ -21,11 +21,12 @@ def on_connect(client, userdata, flags, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    # if(str(msg.payload == "b'startup'")):
-    #     backProcess.makeMe('python','/home/pi/git_repos/fish_tank/space_tank.py')
-    # elif(str(msg.payload == "b'close_startup'")):
-    #     backProcess.killMe()
-    if(str(msg.payload) == "b'p1'"):
+    if(str(msg.payload == "b'startup'")):
+        mainProcess.makeMe('python','/home/pi/git_repos/fish_tank/clownfish_shutdown.py')
+    elif(str(msg.payload == "b'close_startup'")):
+        client.publish("shutdown")
+        # mainProcess.killMe()
+    elif(str(msg.payload) == "b'p1'"):
         # os.system("python3 hworld.py")
         mainProcess.makeMe('python','/home/pi/glenn/mqtt_gamepad/wormgame_mqtt.py')
         #time.sleep(5)
