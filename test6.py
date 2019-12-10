@@ -145,7 +145,7 @@ class Prog4(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp4'), time.sleep(1), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp4'), time.sleep(1.5), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
 
 class Prog5(tk.Frame):
