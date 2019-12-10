@@ -25,7 +25,7 @@ class MainApp(tk.Tk):
         self.frames = {}
 
         mqttc = mqtt.Client()
-        mqttc.connect('jlmbp.local')
+        mqttc.connect('mqttbroker')
 
         for F in (StartPage, Prog1, Prog2, Prog3, Prog4, Prog5):
 
@@ -53,23 +53,23 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Hello! What program would you like to run?", font=LARGE_FONT)
         label.grid(row=0,column=0, columnspan=2)
 
-        button = tk.Button(self, text="Run Program 1",
-                            command=lambda:[controller.show_frame(Prog1), mqttc.publish("shutdown"),mqttc.publish('test/sub', payload="p1")], font=SMALL_FONT)
+        button = tk.Button(self, text="Snake Game",
+                            command=lambda:[controller.show_frame(Prog1), mqttc.publish("shutdown"), mqttc.publish('test/sub', payload="p1")], font=SMALL_FONT)
         button.grid(row=1,column=0, ipadx=140)
 
-        button2 = tk.Button(self, text="Run Program 2",
-                            command=lambda:[controller.show_frame(Prog2), mqttc.publish('test/sub', payload='p2'), mqttc.publish('test/sub', payload='p2b')], font=SMALL_FONT)
+        button2 = tk.Button(self, text="Audio Visualizer",
+                            command=lambda:[controller.show_frame(Prog2), mqttc.publish("shutdown"), mqttc.publish('test/sub', payload='p2'), mqttc.publish('test/sub', payload='p2b')], font=SMALL_FONT)
         button2.grid(row=2,column=0, ipadx=140)
 
-        button3 = tk.Button(self, text="Run Program 3",
-                            command=lambda:[controller.show_frame(Prog3), mqttc.publish('test/sub', payload='p3')], font=SMALL_FONT)
+        button3 = tk.Button(self, text="Donut Color Picker",
+                            command=lambda:[controller.show_frame(Prog3), mqttc.publish("shutdown"), mqttc.publish('test/sub', payload='p3')], font=SMALL_FONT)
         button3.grid(row=3,column=0, ipadx=140)
 
-        button4 = tk.Button(self, text="Run Program 4",
-                            command=lambda:[controller.show_frame(Prog4), mqttc.publish('test/sub', payload='p4')], font=SMALL_FONT)
+        button4 = tk.Button(self, text="Light Cycles",
+                            command=lambda:[controller.show_frame(Prog4), mqttc.publish("shutdown"), mqttc.publish('test/sub', payload='p4')], font=SMALL_FONT)
         button4.grid(row=4,column=0, ipadx=140, sticky="s")
-        button4 = tk.Button(self, text="Run Program 5",
-                            command=lambda:[controller.show_frame(Prog5), mqttc.publish('test/sub', payload='p5'), mqttc.publish('test/sub', payload='p5b')], font=SMALL_FONT)
+        button4 = tk.Button(self, text="Camera",
+                            command=lambda:[controller.show_frame(Prog5), mqttc.publish("shutdown"), mqttc.publish('test/sub', payload='p5'), mqttc.publish('test/sub', payload='p5b')], font=SMALL_FONT)
         button4.grid(row=5,column=0, ipadx=140, sticky="s")
 
 
@@ -89,7 +89,7 @@ class Prog1(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp1')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp1'), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
 
 
@@ -108,7 +108,7 @@ class Prog2(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp2')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp2'), time.sleep(1), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
 
         
@@ -127,7 +127,7 @@ class Prog3(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp3')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp3'), time.sleep(1), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
         
 class Prog4(tk.Frame):
@@ -145,7 +145,7 @@ class Prog4(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp4')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp4'), time.sleep(1), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
 
 class Prog5(tk.Frame):
@@ -163,7 +163,7 @@ class Prog5(tk.Frame):
         img.grid(row=1,column=0, columnspan=2)
 
         button1 = tk.Button(self, text="Quit Program",
-                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp5')], font=SMALL_FONT)
+                            command=lambda: [controller.show_frame(StartPage), mqttc.publish('test/sub', payload='qp5'), time.sleep(1), mqttc.publish('test/sub', payload='startup')], font=SMALL_FONT)
         button1.grid(row=2,column=0, columnspan=2)
 
         

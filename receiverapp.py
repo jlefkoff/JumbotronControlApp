@@ -21,9 +21,9 @@ def on_connect(client, userdata, flags, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    if(str(msg.payload == "b'startup'")):
+    if(str(msg.payload) == "b'startup'"):
         mainProcess.makeMe('python','/home/pi/git_repos/fish_tank/clownfish_shutdown.py')
-    elif(str(msg.payload == "b'close_startup'")):
+    elif(str(msg.payload) == "b'close_startup'"):
         client.publish("shutdown")
         # mainProcess.killMe()
     elif(str(msg.payload) == "b'p1'"):
